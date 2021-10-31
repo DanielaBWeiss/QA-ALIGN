@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+<!--<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+<link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.css" media="screen" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+
+
+<style>
+    label {
+        font-weight: normal !important;
+    }
+
+    .agreements {
+        float: right;
+    }
+
+    #all-answers {
+        display: none;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    h3 {
+      padding-left: 10px;
+    }
+
+    a {
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+    }
+    .mycontent-left {
+      border-left: 1px solid;
+      color: #b4b4b4;
+    }
+    /* Style the list (remove margins and bullets, etc) */
+    .panel{
+      margin-top: 20px;
+    }
+
+    .button4 {
+        border-radius: 4px;
+        border-right-color: #9aa8b2;
+    }
+    .check {
+        color: forestgreen;
+    }
+    .remove:hover {
+        color: red;
+    }
+    .button4:hover {
+        background-color: #9aa8b2;
+    }
+
+    ul.task {
+      /* Use flex boxes to align li items */
+
+        justify-content: space-around;
+        /* Remove default padding from major browsers */
+        padding: 0;
+        /* Hide the default decorations for li items */
+
+    }
+    li.borderless {
+        border-top: 0 none;
+        border-right: 0 none;
+        border-left: 0 none;
+    }
+    ul li {
+        word-wrap: break-word;
+    }
+    /* Style the list items */
+
+    ul li.task {
+      /*border:: 1px solid #ddd;*/
+      /*margin-top: -1px; /* Prevent double borders */
+      /*background-color: #f6f6f6;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      color: black;
+      display: block;
+      margin-right: 30px;
+      position: relative;
+      display: inline-block;*/
+        display: block;
+    }
+    ul li::marker {
+      font-size: 1.5em;
+    }
+
+    ul li.task1 {
+        border-bottom: 1.5px solid grey;
+        padding-right: 40px;
+    }
+
+
+    /* Style the close button (span) */
+    #close {
+      cursor: pointer;
+      float: right;
+      padding-right: 20px;
+      font-weight: bold;
+      /*
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      padding: 12px 16px;
+      transform: translate(0%, -50%);*/
+    }
+
+    #close:hover {background: #bbb;}
+
+    span.b {
+      font-weight: bold;
+    }
+
+    div.note {
+      font-size: 1.2em;
+    }
+
+    p.example {
+      font-size: 1.2em;
+    }
+
+    strong.note {
+        font-weight: 8;
+    }
+
+    p.lead {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-weight: 10;
+        font-size: 18px;
+    }
+    div.lead {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-weight: 10;
+        font-size: 18px;
+    }
+
+    mark {
+      background: #ffbca3;
+    }
+    p.yellow::selection {
+        color: black;
+        background: yellow;
+    }
+    p.yellow::-moz-selection { /* Code for Firefox */
+        color: black;
+        background: yellow;
+    }
+
+    .header-toggle {
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .panel-title {
+      font-size: 1.3em;
+      font-style: normal;
+    }
+    .panel-heading{
+        padding: 10px;
+        margin: 0;
+        font-size: 1.2em
+    }
+
+    p.yellow {
+        padding: 10px;
+        margin: 0;
+        font-size: 1.2em
+    }
+    .button {
+      padding: 20px;
+    }
+
+    button.context {
+        border:none;
+        text-decoration:underline;
+    }
+
+    button.button2 {
+      margin-right: 10px;
+      margin-bottom: 10px;
+      margin-top: 5px;
+    }
+
+    td {
+      word-wrap: break-word;
+      min-width: 20px;
+      max-width: 180px;
+      font-size: 1.1em;
+    }
+
+    td#example{
+      word-wrap: break-word;
+      min-width: 450px;
+      font-size: 1.1em;
+    }
+    table td#example:first-child {
+        border-left: none;
+    }
+
+    table td#example:last-child {
+        border-right: none;
+    }
+
+    tbody td:hover {
+      background-color: #eee;
+      cursor: pointer;
+    }
+    table td {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    }
+
+    table td:first-child {
+        border-left: none;
+    }
+
+    table td:last-child {
+        border-right: none;
+    }
+
+</style>
+
+<section class="container" id="content">
+        <!-- Instructions -->
+        <div class="card">
+            <div class="card-header bg-primary header-toggle" onmousedown="if(document.getElementById('collapse1').style.display == 'none'){ document.getElementById('collapse1').style.display = 'block'; }else{ document.getElementById('collapse1').style.display = 'none'; }">
+
+                Instructions (click to expand / collapse)
+            </div>
+            <div class="card-body">
+                <div id="collapse1" style="display:none">
+                  <p class="lead">
+                    In this task given two sentences whose content partly overlaps, you will be presented with Alignments created for this pair from two workers.
+                      The alignments will be divided into two lists, (1) with alignments both workers created (these are only for show), and (2) containing disputed alignments.
+                    <br>For example:
+                    <h5>Sentence A</h5><p class="example" style="padding-left: 20px;"><em> Johnny <strong>walked</strong> through the garden after he <strong>bought</strong> milk at the store.</em></p>
+                    <h5>Sentence B</h5><p class="example" style="padding-left: 20px;"><em> After <strong>getting</strong> milk, the boy John fed ducks, since he <strong>went</strong> to the garden on his way home, <strong>stopping</strong> briefly.</em></p>
+                    <div class="container-fluid">
+                            <div class="row">
+
+                            <div class="col-lg-7">
+                            <p style="font-size: large;"><strong>Worker A Alignments</strong></p>
+                                <div class="container-fluid">
+                                    <ul class="list-group-flush">
+                                        <div class="row align-items-center flex-wrap">
+                                            <div class="col-sm-1">
+                                                <button class="btn button4 check rounded-0">&#x2713</button></div>
+                                            <div class="col-sm-6">
+                                                <li class="list-group-item borderless">
+                                                    A: Who walked somewhere? - Johnny </br>
+                                                    B: Who went somewhere? - the boy
+                                                </li></div>
+                                        </div>
+                                    </ul>
+                                </div>
+                            <p style="font-size: large;"><strong>Worker B Alignments</strong></p>
+                                <div class="container-fluid ">
+                                <ul class="list-group-flush">
+                                     <div class="row align-items-center flex-wrap">
+                                            <div class="col-sm-1">
+                                                <button class="btn button4 check rounded-0">&#x2713</button></div>
+                                            <div class="col-sm-6">
+                                                <li class="list-group-item borderless">
+                                                    A: Who walked somewhere? - Johnny </br>
+                                                    B: Who went somewhere? - John
+                                                </li></div>
+                                        </div>
+                                </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-5" class="agreements"><legend>Alignments Already agreed on</legend>
+                                <div class="container-fluid">
+                                    <ul class="list-group-flush">
+                                        <li class="list-group-item text-muted">
+                                            A: Where did someone walk? - through the garden
+                                            B: Where did someone go? - to the garden
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                            <hr>
+
+
+                    <p class="lead" style="font-weight: 15; font-size: 1.4em;"><strong>
+                        Your task is to select the correct alignments from the disputed ones (worker A and B), according to our guidelines (here's a <a href="#guideline" style="border: none;" onmousedown="if(document.getElementById('collapse2').style.display == 'none'){ document.getElementById('collapse2').style.display = 'block'; }else{ document.getElementById('collapse2').style.display = 'none'; }">refresher</a>).
+                        You won't be able to add redundant alignments (according to our rules), if a similar alignments already exists in the agreed list. If none are correct, you may choose "No Correct Alignments".
+                    </strong>
+                        <br>
+                    </p><p class="note" style="color: darkblue; font-size: 20px;">In our experience, most disputes are missed alignments by one of the annotators, some are incorrect alignments, or both annotators found the same "relation", but one is more correct than the other.
+                    </p>
+
+            </div>
+            </div>
+        </div></br>
+         <div class="card">
+             <div id="guideline" class="card-header bg-primary header-toggle" onmousedown="if(document.getElementById('collapse2').style.display == 'none'){ document.getElementById('collapse2').style.display = 'block'; }else{ document.getElementById('collapse2').style.display = 'none'; }">
+
+                Guidelines Refresher (click to expand / collapse)
+            </div>
+             <div class="card-body">
+                <div id="collapse2" style="display:none">
+                    <legend>Select the correct alignments that adhere to our original guidelines, these are:</legend>
+                    <ul>
+                        <li>Questions, verbs, and answers must be corresponding and referring to the same “thing” and all participants/times/locations are the same.</li>
+                        <li>Alignments must be minimal (no redundant QAs from the same sentence).</li>
+                        <li>Alignments must answer the same “relation” (i.e question), rather than information expressed.</li>
+                        <li>The core information expressed in both sets of QA should be redundant together.</li>
+                    </ul>
+                </div>
+             </div>
+
+         </div>
+
+        <form id="main-form" action="/action_page.php">
+        <input id="my_answers" name="all_my_answers" type="hidden" value="" />
+        <input id="hit_time" name="time" type="hidden" value="" />
+        </br>
+        <div id="main-annotations">
+            <div class="card" >
+            <div class="card-header" style="font-size: larger"><strong>-- Step 1 -- Read the following two sentences <u>carefully</u></strong><br/>
+                  Keep in mind all the <u>overlapping content</u> that both sentences share.
+                  If the sentences are not clear, click on the "previous sentence" button for more information.
+                  <a href="#guideline" class="card-link" style="border: none;" onmousedown="if(document.getElementById('collapse2').style.display == 'none'){ document.getElementById('collapse2').style.display = 'block'; }else{ document.getElementById('collapse2').style.display = 'none'; }">Guidelines refresher</a>
+                  <!--Identify all phrases that approximately express the same meaning in both sentences.
+                  <strong>Highlight them, making sure to always include one of the bolded verbs in the relevant spans.</strong> Technical note: spans must go around the verb, they <u>cannot</u> include only the verbs. To remove any marked spans, simply click on them.
+                  -->
+              </div>
+                <div class="card-body">
+                    <h4>Sentence A</h4>
+                    <button class="context" data-target="#prev1" data-toggle="collapse" type="button">previous sentence</button>
+
+                    <div class="collapse" id="prev1">${prev_text_1}</div>
+
+                    <p class="yellow" id="sent1" style="font-size:18px;">${text_1_html}</p>
+
+                    <div hidden="" id="qas_1">${qas_1}</div>
+
+                    <h4>Sentence B</h4>
+                    <button class="context" data-target="#prev2" data-toggle="collapse" type="button">previous sentence</button>
+
+                    <div class="collapse" id="prev2">${prev_text_2}</div>
+
+                    <p class="yellow" id="sent2" style="font-size:18px;">${text_2_html}</p>
+
+                    <div hidden="" id="qas_2">${qas_2}</div>
+                    <!--<button type="button" class="btn btn-primary btn-lg pull-left" onclick="display_qa()" id="button1">I'm Ready</button>--><!-- Once we click display qas, we should have something highlighted and based on those, well display the QAs--><!--<button type="button" class="btn btn-danger btn-sm pull-right" onclick="nothing()" id="button3" style="margin-top: 10px;"> onclick="nothing()" No information overlap</button>--></div>
+
+                </div></br>
+                <div id="2nd-main-block">
+                <div class="card">
+                <div class="card-header" style="font-size: larger"><strong>-- Step 2 -- The Following are Disputed Alignments between 2 Workers</strong>
+
+                <div id="part2-message">Please resolve the disputes between worker A and Bs alignments, by selecting the correct ones according to the guidelines.</div>
+                </div>
+                    <div class="card-body">
+
+                        <div class="container-fluid">
+                            <div class="row">
+
+                            <div class="col-lg-7">
+                            <p style="font-size: larger;"><strong>Worker A Alignments</strong></p>
+                                <div class="container-fluid">
+                                <ul class="list-group-flush" id="dis_a"></ul>
+                                </div>
+                            <p style="font-size: larger;"><strong>Worker B Alignments</strong></p>
+                                <div class="container-fluid ">
+                                <ul class="list-group-flush" id="dis_b"></ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-5" class="agreements"><legend>Alignments Already agreed on</legend>
+                                <div class="container-fluid">
+                                    <ul class="list-group-flush" id="agreements">
+                                    </ul>
+                                </div>
+                            <hr>
+                                <p style="font-size: larger; color: forestgreen; margin-left: 20px;"><strong>Consolidated Alignments</strong></p>
+                                <div class="container-fluid ">
+                                    <ul class="list-group-flush mycontent-left" id="added_alignments">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="row align-items-center">
+                                <div class="col-sm-10 align-start">
+                                <input  name="hit-submit" type="submit" onclick="saveForm()" value="Submit" id="submit-button"/>
+                                </div>
+                                <div class="col-sm-1" >
+                                    <input class="btn btn-danger pull-right" id="skip" onclick="nothing()" style="opacity: 0.6;" type="button" value="No Correct Alignments" />
+                                </div>
+                            </div>
+                        </div>
+
+                    <!--<button type="button" class="btn btn-primary btn-lg pull-left" onclick="display_qa()" id="button1">I'm Ready</button>--><!-- Once we click display qas, we should have something highlighted and based on those, well display the QAs-->
+                </div>
+                    <!--<button type="button" class="btn btn-danger btn-sm pull-right" onclick="nothing()" id="button3" style="margin-top: 10px;"> onclick="nothing()" No information overlap</button>-->
+                </div>
+                </div>
+
+        <br><br></div>
+            <label for="feedback" >Would you like to leave feedback?</label>&nbsp;<br/>
+                <textarea  class="form-control" cols="50" id="feedback" maxlength="250" name="feedback"
+                                  rows="2"></textarea><br>
+        </form>
+</section>
+
+<script type="text/javascript">
+
+  function toggle(elementId) {
+        const current = document.getElementById(elementId).style.display;
+        document.getElementById(elementId).style.display = current === 'none' ? 'block' : 'none';
+  }
+
+</script>
+
+<script type="text/javascript">
+  //This data is for testing, demonstrates the data well have when running on mturk.
+
+
+  var data = {"abs_sent_id_1":7,  "prev_text_1": "On the positive side the reservation system has helped preserve Indian culture, to recognize Indian sovereignty and to provide federal funds for roads, schools, clinics and a welfare system.",
+      "text_1": "The system also recognizes Indian fishing and hunting rights and frees residents from state taxes, while providing the right to vote in local, state, and federal elections.",  "abs_sent_id_2":6, "prev_text_2":"Tribes can tax non-Indian reservation employees.", "text_2":"They can determine local zoning, fishing and hunting rules; ban alcohol; and open casinos.",
+    'text_1_html': 'The system also <strong>recognizes</strong> Indian fishing and hunting rights and <strong>frees</strong> residents from state taxes, while <strong>providing</strong> the right to <strong>vote</strong> in local, state, and federal elections.',
+ 'text_2_html': 'They can <strong>determine</strong> local zoning, fishing and hunting rules; <strong>ban</strong> alcohol; and <strong>open</strong> casinos.',
+    'aligned_qas':[{'sent1': [['DUC2006~!~D0601~!~26~!~2~!~brought~!~416', 'What has brought something? - Casinos', 'brought']], 'sent2': [['DUC2006~!~D0601~!~69~!~10~!~provide~!~1677', 'What provides something? - casinos', 'provide']]}],
+      'disagreements_a':[{"index":0,'sent1': [['DUC2006~!~D0601~!~26~!~2~!~brought~!~12708', 'What has something brought? - opportunity', 'brought'], ['DUC2006~!~D0601~!~26~!~2~!~brought~!~12709', 'What has something brought? - new level of prosperity', 'brought']], 'sent2': [['DUC2006~!~D0601~!~69~!~10~!~provide~!~1676', 'What does something provide? - income to alleviate extreme poverty', 'provide']]}],
+      'disagreements_b':[{"index":1,'sent1': [['DUC2006~!~D0601~!~26~!~2~!~brought~!~12708', 'What has something brought? - opportunity', 'brought']], 'sent2': [['DUC2006~!~D0601~!~69~!~7~!~established~!~239', 'What has been established? - casinos', 'established']]},
+                    {"index":2,'sent1': [['DUC2006~!~D0601~!~26~!~2~!~brought~!~12709', 'What has something brought? - new level of prosperity', 'brought']], 'sent2': [['DUC2006~!~D0601~!~69~!~10~!~provide~!~1676', 'What does something provide? - income to alleviate extreme poverty', 'provide']]},
+                    {"index":3,'sent1': [['DUC2006~!~D0601~!~26~!~2~!~brought~!~417', 'Who has something brought something to? - many tribes and then somehow we added and adeddd text to see if this stupid word wrap actually works', 'brought']], 'sent2': [['DUC2006~!~D0601~!~69~!~10~!~provide~!~1675', 'Where does something provide something? - reservations near population centers', 'provide']]}]};
+
+
+//TODO: get alignments key from html
+  var agreed_alignments = []; //this will keep all alignments selected from qa table
+
+  var disagree_a = data['disagreements_a'];
+  var disagree_b = data['disagreements_b'];
+
+  var aligns = {};
+  var item_2_id = {};
+
+  //const submit; //disables or enables the submit button
+  var skip = 0;
+
+  var startTime, endTime;
+
+    function start() {
+      startTime = new Date();
+    };
+
+    function end() {
+      endTime = new Date();
+      var timeDiff = endTime - startTime; //in ms
+      // strip the ms
+      timeDiff /= 1000;
+      timeDiff /= 60;
+
+      // get seconds
+      var mins = Math.round(timeDiff * 100) / 100;
+      console.log(mins + " minutes");
+      return mins
+    }
+
+
+  window.onload = function() {
+
+       start();
+       //when the document is finished loading, replace everything
+       //TODO - this should go back to ${sent1} in mturk
+       document.getElementById("sent1").innerHTML= data["text_1_html"];
+       document.getElementById("sent2").innerHTML= data["text_2_html"];
+       document.getElementById("prev1").innerHTML = data["prev_text_1"];
+       document.getElementById("prev2").innerHTML = data["prev_text_2"];
+
+       const btnSubmit = document.getElementById("submit-button");
+       //console.log("SUBMIT ", submit);
+       btnSubmit.disabled = true;
+       //make submit disabled
+       display_alignments();
+       display_disagreements();
+
+}
+    function containsObject(obj, list) {
+        console.log("inside contains function ");
+        for (item of list) {
+          console.log("item ",JSON.stringify(item["sent1"]));
+          console.log("obj ", JSON.stringify(obj["sent1"]));
+          if (JSON.stringify(item) === JSON.stringify(obj)) {
+              return true;
+          }
+          if (JSON.stringify(item["sent1"]) === JSON.stringify(obj["sent1"])) {
+              return true
+          }
+          if (JSON.stringify(item["sent2"]) === JSON.stringify(obj["sent2"])){
+              return true
+          }
+        }
+        return false
+      }
+
+   function removeFromArray(arr) {// call func removeFromArray(array, item);
+          var what, a = arguments, L = a.length, ax;
+          while (L > 1 && arr.length) {
+              what = a[--L];
+              while ((ax= arr.indexOf(what)) !== -1) {
+                  arr.splice(ax, 1);
+              }
+          }
+          return arr;
+   }
+
+
+  function display_disagreements() {
+        disagree_a.sort(function(a,b) {
+             if (a.index > b.index) return 1
+             else return -1
+        })
+        disagree_b.sort(function(a,b) {
+             if (a.index > b.index) return 1
+             else return -1
+        })
+      display_worker_disagreement("dis_a", disagree_a);
+      display_worker_disagreement("dis_b", disagree_b);
+  }
+
+
+  function display_worker_disagreement(list_type, worker_dis) {
+      var dissagree_list = document.getElementById(list_type);
+      //dissagree_list.setAttribute("class", "task");
+      if (dissagree_list) {
+       dissagree_list.innerHTML = "";
+      } else {
+          var dissagree_list = document.createElement("ul");
+          dissagree_list.setAttribute("class", "list-group-flush");
+          dissagree_list.setAttribute("id", list_type);
+    }
+      worker_dis.forEach( function(item, i) {
+          key = i + list_type;
+          aligns[key] = item;
+          item['worker'] = list_type;
+
+          var row = document.createElement("div");
+          row.setAttribute("class", "row align-items-center flex-wrap");
+          row.setAttribute("id", key);
+
+          var list_item = document.createElement("li");
+          list_item.setAttribute("class", "list-group-item borderless");
+          list_item.setAttribute("id", key);
+          //col1.appendChild(list_item);
+
+          var col1 = document.createElement("div");
+          col1.setAttribute("class", "col-sm-1");
+          var input_item = document.createElement("button");
+          input_item.setAttribute("class", "btn button4 check rounded-0");
+          input_item.name = i;
+          input_item.id = key;
+          input_item.style.marginRight = '10px';
+          input_item.innerHTML = "&#x2713";
+          col1.appendChild(input_item);
+
+          var col2 = document.createElement("div");
+          col2.setAttribute("class", "col");
+
+          var sent1_text = "";
+          for (sent1 of item["sent1"]) { //item contains ['DUC2006~!~D0601~!~26~!~2~!~brought~!~12708', 'What has something brought? - opportunity', 'brought'
+             sent1_text = sent1_text + "A: ";
+             sent1_text = sent1_text + String(sent1[1]) + "<br/>";
+           }
+
+          var sent2_text = "";
+
+           for (sent2 of item["sent2"]) {
+              sent2_text = sent2_text + "B: ";
+              sent2_text = sent2_text + String(sent2[1]) + "<br/>";
+           }
+
+          list_item.innerHTML = sent1_text + sent2_text;
+          var br = document.createElement("br");
+          col2.appendChild(list_item);
+          row.append(col1);
+          row.append(col2);
+          dissagree_list.appendChild(row);
+          dissagree_list.appendChild(br);
+      });
+      add_and_remove_align(list_type);
+  }
+
+  function add_and_remove_align(list_type) {
+        const btnSubmit = document.getElementById("submit-button");
+        btnSubmit.disabled = agreed_alignments.length === 0;
+
+        var align_list = document.getElementById(list_type);
+        console.log("getting align list ", align_list);
+        align_list.querySelectorAll('div.row').forEach((node, i) =>  {
+            node.firstElementChild.onclick = function () {
+
+                var attr = node.getAttribute("id");
+                var item = aligns[attr];
+                 //adding to the final agreed list
+                if (containsObject(item, agreed_alignments)) {
+                    alert("This alignment is redundant. The consolidated list already contains an alignment with the same QAs either from sentence A or B.")
+                    return false;
+                } else {
+                    agreed_alignments.push(item);
+                    if (list_type == "dis_a") {
+                        removeFromArray(disagree_a, item);
+                    } else {
+                        removeFromArray(disagree_b, item);
+                    }
+                    node.firstElementChild.parentNode.parentNode.removeChild(this.parentNode);
+                    display_added_alignments();
+                    return false;
+                }
+            };
+        });
+  }
+
+  function put_back_align(list_type){
+        const btnSubmit = document.getElementById("submit-button");
+        btnSubmit.disabled = agreed_alignments.length === 0;
+        var align_list = document.getElementById(list_type);
+        align_list.querySelectorAll('div.row').forEach((node, i) =>  {
+            node.firstElementChild.onclick = function () {
+                var attr = node.getAttribute("id");
+                var item = aligns[attr];
+                console.log("Index ", item['index'])
+                if (item['worker'] == "dis_a") {
+                    disagree_a.push(item);
+                } else {
+                    disagree_b.push(item);
+                }
+                removeFromArray(agreed_alignments, item);
+                btnSubmit.disabled = agreed_alignments.length === 0;
+                node.firstElementChild.parentNode.parentNode.removeChild(this.parentNode);
+                display_disagreements();
+                return false;
+            };
+    });
+  }
+
+  function containsObject(obj, list) {
+    console.log("inside contains function ");
+    for (item of list) {
+      console.log("item ",JSON.stringify(item["sent1"]));
+      console.log("obj ", JSON.stringify(obj["sent1"]));
+      if (JSON.stringify(item) === JSON.stringify(obj)) {
+          return true;
+      }
+      if (JSON.stringify(item["sent1"]) === JSON.stringify(obj["sent1"])) {
+          return true
+      }
+      if (JSON.stringify(item["sent2"]) === JSON.stringify(obj["sent2"])){
+          return true
+      }
+    }
+    return false
+  }
+
+  function display_added_alignments() {
+    var agree_list = document.getElementById("added_alignments");
+    if (agree_list) {
+       agree_list.innerHTML = "";
+    } else {
+          var agree_list = document.createElement("ul");
+          agree_list.setAttribute("class", "list-group-flush");
+          agree_list.setAttribute("id", "added_alignments");
+    }
+      agree_list.setAttribute("class", "task");
+
+      agreed_alignments.forEach( function(item, i) {
+          key = i + "added";
+          aligns[key] = item;
+          console.log("ITEM ", item);
+
+          var row = document.createElement("div");
+          row.setAttribute("class", "row align-items-center flex-wrap");
+          row.setAttribute("id", key);
+
+          var list_item = document.createElement("li");
+          list_item.setAttribute("class", "list-group-item borderless");
+          list_item.setAttribute("id", key);
+          //col1.appendChild(list_item);
+
+          var col1 = document.createElement("div");
+          col1.setAttribute("class", "col-sm-1 align-left");
+          var input_item = document.createElement("button");
+          input_item.setAttribute("class", "btn button4 remove rounded-0");
+          input_item.name = i;
+          input_item.id = key;
+          input_item.style.marginRight = '10px';
+          input_item.innerHTML = "&#x2715";
+          col1.appendChild(input_item);
+
+          var col2 = document.createElement("div");
+          col2.setAttribute("class", "col");
+
+          var sent1_text = "";
+          for (sent1 of item["sent1"]) { //item contains ['DUC2006~!~D0601~!~26~!~2~!~brought~!~12708', 'What has something brought? - opportunity', 'brought'
+             sent1_text = sent1_text + "A: ";
+             sent1_text = sent1_text + String(sent1[1]) + "<br/>";
+           }
+
+          var sent2_text = "";
+
+           for (sent2 of item["sent2"]) {
+              sent2_text = sent2_text + "B: ";
+              sent2_text = sent2_text + String(sent2[1]) + "<br/>";
+           }
+
+          list_item.innerHTML = sent1_text + sent2_text;
+          var br = document.createElement("br");
+          col2.appendChild(list_item);
+          row.append(col1);
+          row.append(col2);
+          agree_list.appendChild(row);
+          agree_list.appendChild(br);
+      });
+      put_back_align("added_alignments");
+  }
+
+  function display_alignments() {
+
+    var align_list = document.getElementById("agreements");
+    if (Object.keys(data['aligned_qas']).length === 0) {
+        var p = document.createElement("p");
+        p.innerText = "None";
+        align_list.appendChild(p);
+        return
+    }
+    //align_list.setAttribute("class", "task");
+    align_list.setAttribute("id", "alignments");
+
+    data['aligned_qas'].forEach( function(item, i) {
+
+      var list_item = document.createElement("li");
+      list_item.setAttribute("class", "list-group-item text-muted");
+
+      var sent1_text = "";
+      for (sent1 of item["sent1"]) { //item contains ['DUC2006~!~D0601~!~26~!~2~!~brought~!~12708', 'What has something brought? - opportunity', 'brought'
+         sent1_text = sent1_text + "A: ";
+         sent1_text = sent1_text + String(sent1[1]) + "<br/>";
+       }
+
+      var sent2_text = "";
+
+       for (sent2 of item["sent2"]) {
+          sent2_text = sent2_text + "B: ";
+          sent2_text = sent2_text + String(sent2[1]) + "<br/>";
+       }
+
+       list_item.innerHTML = sent1_text + sent2_text;
+       var br = document.createElement("br");
+       align_list.appendChild(list_item);
+       align_list.appendChild(br);
+    });
+
+    //submit.disabled = align_selects.length === 0;
+  }
+
+function nothing() {
+      if (confirm("Are you sure there is no overlap of information?")) {
+        const form = document.querySelector("form");
+        form.submit();
+      } else{
+          return false;
+      }
+}
+
+
+function saveForm() {
+    let endT = end();
+    let result = document.getElementById("my_answers");
+
+    final_results = {};
+    for (align of align_selects) {
+        for (item of align["sent1"]) {
+            item.splice(2,2);
+        }
+        for (item of align["sent2"]) {
+            item.splice(2,2);
+        }
+    }
+
+    result.value = JSON.stringify(align_selects);
+    alert(result.value)
+    console.log(result.value);
+
+    let time = document.getElementById("hit_time");
+    time.value = endT;
+    //const form = document.querySelector("form");
+    //form.submit();
+}
+
+  function removeFromArray(arr) {//removeFromArray(align_selects, item);
+      var what, a = arguments, L = a.length, ax;
+      while (L > 1 && arr.length) {
+          what = a[--L];
+          while ((ax= arr.indexOf(what)) !== -1) {
+              arr.splice(ax, 1);
+          }
+      }
+      return arr;
+  }
+
+  function containsObject(obj, list) {
+    console.log("inside contains function ");
+    for (item of list) {
+      console.log("item ",JSON.stringify(item["sent1"]));
+      console.log("obj ", JSON.stringify(obj["sent1"]));
+      if (JSON.stringify(item) === JSON.stringify(obj)) {
+          return true;
+      }
+      if (JSON.stringify(item["sent1"]) === JSON.stringify(obj["sent1"])) {
+          return true
+      }
+      if (JSON.stringify(item["sent2"]) === JSON.stringify(obj["sent2"])){
+          return true
+      }
+    }
+    return false
+  }
+
+
+
+
+
+
+</script>
+

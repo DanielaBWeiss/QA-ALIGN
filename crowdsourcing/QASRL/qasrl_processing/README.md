@@ -1,0 +1,1 @@
+This folder contains scripts to process data PRE QASRL Parser, POST QASRL annotatinos, and PRE QA Alignment.

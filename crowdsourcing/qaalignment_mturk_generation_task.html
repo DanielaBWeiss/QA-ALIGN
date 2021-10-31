@@ -1,0 +1,1302 @@
+<link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.css" media="screen" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><!--<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>
+<link href="https://s3.amazonaws.com/mturk-public/bs30/css/bootstrap.css" media="screen" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--><!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+<style type="text/css">#submit-button{
+        float: left;
+        margin-top: 10px;
+    }
+    #all-answers {
+    display: none;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    h3 {
+      padding-left: 10px;
+    }
+
+    a {
+        background-color: #ffffff;
+        border: 1px solid #dddddd;
+    }
+
+    /* Stellowle the list (remove margins and bullets, etc) */
+    .panel{
+      margin-top: 20px;
+    }
+    ul.task {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Style the list items */
+
+    ul li.task {
+      /*border:: 1px solid #ddd;*/
+      margin-top: -1px; /* Prevent double borders */
+      background-color: #f6f6f6;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px;
+      color: black;
+      display: block;
+      margin-right: 30px;
+      position: relative;
+    }
+
+    ul li.task1 {
+        border-bottom: 1.5px solid grey;
+        padding-right: 40px;
+    }
+
+    /* Add a light grey background color on hover */
+
+    ul li.task:hover {
+      background-color: #eee;
+    }
+
+    /* Style the close button (span) */
+    #close {
+      cursor: pointer;
+      float: right;
+      padding-right: 20px;
+      font-weight: bold;
+      /*
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      padding: 12px 16px;
+      transform: translate(0%, -50%);*/
+    }
+
+    #close:hover {background: #bbb;}
+
+    span.b {
+      font-weight: bold;
+    }
+
+    div.note {
+      font-size: 1.2em;
+    }
+
+    p.example {
+      font-size: 1.2em;
+    }
+
+    strong.note {
+        font-weight: 8;
+    }
+
+    p.lead {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-weight: 10;
+        font-size: 18px;
+    }
+    div.lead {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-weight: 10;
+        font-size: 18px;
+    }
+
+    mark {
+      background: #ffbca3;
+    }
+    p.yellow::selection {
+        color: black;
+        background: yellow;
+    }
+    p.yellow::-moz-selection { /* Code for Firefox */
+        color: black;
+        background: yellow;
+    }
+	.container {
+    	width: 1350px;
+	}
+
+    .header-toggle {
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .panel-title {
+      font-size: 1.3em;
+      font-style: normal;
+    }
+    .panel-heading{
+        padding: 10px;
+        margin: 0;
+        font-size: 1.2em
+    }
+
+    p.yellow {
+        padding: 10px;
+        margin: 0;
+        font-size: 1.2em
+    }
+    .button {
+      padding: 20px;
+    }
+
+    button.context {
+        border:none;
+        text-decoration:underline;
+    }
+
+    button.button2 {
+      margin-right: 10px;
+      margin-bottom: 10px;
+      margin-top: 5px;
+    }
+
+	table.qa_table {
+		width: 100%;
+
+	}
+
+    td {
+      word-wrap: break-word;
+      font-size: 1.1em;
+	  max-width: 50px;
+    }
+
+    td#example{
+      word-wrap: break-word;
+      min-width: 450px;
+      font-size: 1.1em;
+    }
+    table td#example:first-child {
+        border-left: none;
+    }
+
+    table td#example:last-child {
+        border-right: none;
+    }
+
+    tbody td:hover {
+      background-color: #eee;
+      cursor: pointer;
+    }
+    table td {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    }
+
+    table td:first-child {
+        border-left: none;
+    }
+
+    table td:last-child {
+        border-right: none;
+    }
+	table thead {
+		width: 100%;
+	}
+</style>
+<div id="example" style="display: none">
+<div class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading" style="font-size: 1.1em;"><strong>-- Step 1 -- </strong><br />
+<u>Read carefully</u> the following two sentences, and keep in mind all the <u>overlapping content</u> that both sentences share. If the sentences are not clear, click on the &quot;previous sentence&quot; button for more information. Proceed to Step 2 once you&#39;re ready to align question-answers.</div>
+
+<div class="panel-collapse collapse in">
+<div class="panel-body"><!--<input type="button" class="context" data-toggle="collapse" data-target="#prev1">previous sentence</input>-->
+<h4>Sentence A</h4>
+
+<p class="yellow example" id="ex1" style="font-weight:normal; font-size: 1.2em;">$text1$</p>
+<!--<input type="button" class="context" data-toggle="collapse" data-target="#prev2">previous sentence</input>-->
+
+<h4>Sentence B</h4>
+
+<p class="yellow example" id="ex2" style="font-weight:normal; font-size: 1.2em;">$text2$</p>
+<br />
+<strong class="note" style="color:darkblue; font-size: 17px;">Explained: $note-span$</strong></div>
+</div>
+</div>
+</div>
+
+<div id="2block">
+<div class="panel panel-default">
+<div class="panel-heading" style="font-size: 1.1em;"><strong>-- Step 2 -- </strong>
+
+<div>Create <u>as many</u> alignments as possible, <u style="background-color: yellow;">adding each alignment separately!</u> When debating between multiple statements that appear to convey the same information, choose the one that <u>best corresponds</u> (both question and answer) to what you&#39;re trying to align to.</div>
+</div>
+
+<div class="panel-body">
+<div class="table-responsive" style="overflow: auto">$table$</div>
+&nbsp;
+
+<ul id="example_alignments">
+	<li>$align$</li>
+</ul>
+<br />
+<strong class="note" style="color:darkblue; font-size: 17px;">Explained: $note-qa$</strong></div>
+</div>
+</div>
+</div>
+
+<section class="container" id="content">
+<div class="row col-xs-12 col-md-12"><!-- Instructions -->
+<div class="panel panel-primary">
+<div class="panel-heading header-toggle" onmousedown="if(document.getElementById('collapse1').style.display == 'none'){ document.getElementById('collapse1').style.display = 'block'; }else{ document.getElementById('collapse1').style.display = 'none'; }">Instructions (click to expand / collapse)</div>
+
+<div class="panel-body ">
+<div id="collapse1" style="display:none">
+<p class="lead">In this task you will be given two sentences whose content partly overlaps. For example:</p>
+
+<h4>Sentence A</h4>
+
+<p class="example" style="padding-left: 20px;"><em>Johnny, my neighbor, <strong>walked</strong> through the garden.</em></p>
+
+<h4>Sentence B</h4>
+
+<p class="example" style="padding-left: 20px;"><em>After <strong>getting</strong> milk, John <strong>went</strong> to the garden on his way home.</em></p>
+
+<p class="lead">Your task is to identify and align all matching content across both sentences; we divide this into two steps. <!--Your task is to identify all matching content across both sentences, in two steps.<br/>--></p>
+
+<h3>-- Step 1 --</h3>
+
+<p class="lead">You will be presented with two sentences (similar in nature to the example above), which you will need to read carefully before proceeding to step 2. In each sentence there are bolded verbs, they are for emphasis only and are used in step 2.<br />
+While you&#39;re reading, keep in mind <u>all the overlap of information</u> that is shared between the two sentences.<br />
+For the example above, notice both sentences talk about the same event of a boy walking through a garden, after getting some milk.</p>
+
+<p class="lead">Once you have understood and read the sentences, proceed to step 2. Only if both sentences have <u>absolutely nothing</u> in common, click on &quot;No information overlap&quot;.<br />
+<!--
+                    In each sentence there are <strong>bolded verbs</strong>. Your task is to <mark>highlight</mark> all phrases around verbs, whose meaning is captured by both sentences.
+                    In case the sentence is not sufficiently clear, you can click on the "previous sentence" for context.--> <!--You will <mark>highlight</mark> all phrases in each sentence that express the same meaning.
+                    Notice the <strong>bolded verbs</strong>; in every highlighted span, there must always be <ins>at least one <strong>bolded</strong> relevant verb.</ins><br>
+                    In the task itself, you will also be provided with a "<u>previous sentence</u>" for context, in case the given sentence is unclear.--> <!--
+                    <br/><br>
+                    In the above example, we could highlight the following:
+                    <h4>Sentence A</h4><p class="example" style="padding-left: 20px;"><em> <mark>Johnny <strong>walked</strong> through the garden after he <strong>bought</strong> milk</mark> at the store.</em></p>
+                    <h4>Sentence B</h4><p class="example" style="padding-left: 20px;"><em> After<mark> <strong>getting</strong> milk</mark>, the boy John fed ducks, since <mark>he <strong>went</strong> to the garden</mark> on his way home, <strong>stopping</strong> briefly.</em></p>
+
+                    <div class="note" style="color:darkblue;">Don't worry about the exact spans you are marking, as long as the relevant bolded verbs are included and the span is longer than just the verb.<br> If unsure what to mark, highlight a longer span.</div><br/>
+                    --><!--<div class="note" style="color:darkblue;">Note that the actual length of the span doesn't matter, it would have also been correct to include "The boy" in the span, as long as the <strong>verbs</strong> that relate to the same meaning are highlighted.</div>
+                    <br><div class="note" style="color:darkblue;">If unsure, and sentences seem to relate, go ahead and highlight a longer span or even the whole sentence.</div>--> <!--<p class="lead">Once done marking all matching phrases, click on "I'm Ready" and proceed to step 2. Only if both sentences have <u>absolutely nothing</u> in common, click on "No information overlap".<br>
+                  --><!--Once you have highlighted all similar phrases, you can start part 2 by clicking on the <strong>"I'm Ready"</strong> button.<br/>
+                  <em class="note">Note: Each sentence must have a phrase selected in order to continue.</em><br/>
+                        <em class="note">Only if both sentences have  <strong>absolutely nothing</strong> in common, click on "No information overlap".</em>
+                  <br/>--></p>
+
+<h3>-- Step 2 --</h3>
+
+<p class="lead">Here you are presented with several <strong>questions</strong> and <strong>answers</strong> about the bolded verbs that appear in both sentences from step 1.<br />
+For our example above, we would get the following table (shortened for emphasis):</p>
+
+<div class="table-responsive">
+<table class="table" id="example_table" style="background-color: #F5F5F5;">
+	<thead>
+		<tr>
+			<th class="w-25" scope="row">#</th>
+			<th align="center" scope="col">Sentence A Questions and Answers</th>
+			<th align="center" scope="col">Sentence B Questions and Answers</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td scope="row">1</td>
+			<td class="sent1_qa">Who <strong>walked</strong> somewhere? - Johnny</td>
+			<td class="sent2_qa">Where did someone <strong>go</strong>? - to the garden</td>
+		</tr>
+		<tr>
+			<td scope="row">2</td>
+			<td class="sent1_qa">Where did someone <strong>walk</strong>? - through the garden</td>
+			<td class="sent2_qa">Who <strong>went</strong> somewhere? - John</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<p class="lead">You can think of each question-answer (QA) pair as expressing a <u>single statement/fact</u> about the verb (question 1A for example, states that &quot;Johnny walked somewhere&quot;).<br />
+Since the sentences share some content, some statements (QA pairs) in one sentence will have matching statements in the other, which express approximately the same content. For the example above, the pair of statements:</p>
+
+<table class="table" id="example_table_2" style="background-color: #F5F5F5;">
+	<thead>
+		<tr>
+			<th class="w-25" scope="row">#</th>
+			<th align="center" scope="col">Sentence A Questions and Answers</th>
+			<th align="center" scope="col">Sentence B Questions and Answers</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td scope="row">1</td>
+			<td class="sent1_qa" style="background-color:  #a6a6a6;">Who <strong>walked</strong> somewhere? - Johnny</td>
+			<td class="sent2_qa">Where did someone <strong>go</strong>? - to the garden</td>
+		</tr>
+		<tr>
+			<td scope="row">2</td>
+			<td class="sent1_qa">Where did someone <strong>walk</strong>? - through the garden</td>
+			<td class="sent2_qa" style="background-color:  #a6a6a6;">Who <strong>went</strong> ssomewhere? - John</td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="lead" style="padding-left: 20px;">(1A and 2B) match in their content and their &quot;relation&quot; (what the questions are asking about), and would be considered <u style="background-color:yellow;">a single alingment</u> (meaning you click &quot;add alignment&quot; after each one). The following pair as well (and a few others):</p>
+
+<table class="table" id="example_table_3" style="background-color: #F5F5F5;">
+	<thead>
+		<tr>
+			<th class="w-25" scope="row">#</th>
+			<th align="center" scope="col">Sentence A Questions and Answers</th>
+			<th align="center" scope="col">Sentence B Questions and Answers</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td scope="row">1</td>
+			<td class="sent1_qa">Who <strong>walked</strong> somewhere? - Johnny</td>
+			<td class="sent2_qa" style="background-color:  #a6a6a6;">Where did someone <strong>go</strong>? - to the garden</td>
+		</tr>
+		<tr>
+			<td scope="row">2</td>
+			<td class="sent1_qa" style="background-color:  #a6a6a6;">Where did someone <strong>walk</strong>? - through the garden</td>
+			<td class="sent2_qa">Who <strong>went</strong> somewhere? - John</td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="lead" style="font-weight: 15; font-size: 1.4em;"><strong>Your task is to find all such <u>alignments</u> of corresponding statements, which express matching content; that is, they describe the <u>same scenario</u> in the context of the text.</strong></p>
+
+<p class="lead" style="font-weight: 15; font-size: 1.4em; "><strong><u style="background-color: yellow;">The annotation tool will allow you to add each alignment separately</u>, by selecting the relevant QAs, and clicking on &quot;Add Alignment&quot; each time.</strong></p>
+
+<ul>
+	<li>
+	<p class="lead" style="font-weight: 15; font-size: 1.4em;"><strong>A guiding rule 1</strong>: When aligning, think of what &quot;relation&quot; you are aligning, i.e what information are the questions asking about? (location, participants, etc), and find matching QAs that express this same relation.</p>
+	</li>
+	<li>
+	<p class="lead" style="font-weight: 15; font-size: 1.4em;"><strong>A guiding rule 2</strong>: Ask yourself if the QAs you are aligning are redundant (express the same &quot;core&quot; content) - if put in the same sentence, if yes then they should align.</p>
+	</li>
+	<li>
+	<p class="lead" style="font-weight: 15; font-size: 1.4em;">Notice there can be duplicate or redundant QAs that describe the same scenario, in such a case, choose <u>the most descriptive one</u> for the alignment.</p>
+	</li>
+	<li>
+	<p class="lead" style="font-weight: 15; font-size: 1.4em;">Sometimes we can align one to multiple (or many to many) QAs, but only if the many are necessary to convey the same information that the other conveys.</p>
+	</li>
+	<li>
+	<p class="lead" style="font-weight: 15; font-size: 1.4em;"><u>The same</u> set of statements (QAs) from a single sentence <u>cannot appear</u> in more than one alignment (we can&#39;t align 1A only again), however, it could appear again as part of another set in a different alignment.</p>
+	</li>
+</ul>
+
+<p class="lead"><strong>Please familiarize yourself with the positive and negative examples in the Examples section, to really understand the above instructions, and to create high quality alignments.</strong><br />
+<br />
+<em class="note" style="color: darkblue; font-size: 20px;">Those that read the instructions carefully and perform well, will be contacted and be asked to participate in further training of this task, as well as receive bonuses.</em></p>
+</div>
+</div>
+</div>
+
+<div class="panel panel-info">
+<div class="panel-heading header-toggle" onmousedown="toggle('collapse2')">Examples (click to expand / collapse)</div>
+
+<div class="panel-body" style="background: #ddd">
+<div id="collapse2" style="display:none;"><!--  --><!--- TODO Instructions -->
+<div class="container" style="width: 100%;"><!-- <h2>Examples</h2> -->
+<ul class="nav nav-tabs" id="examples-header" style="display: inline-block;">
+</ul>
+
+<div class="tab-content" id="examples-content">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+
+<form action="/action_page.php" id="main-form"><input id="my_answers" name="all_my_answers" type="hidden" value="" /> <input id="hit_time" name="time" type="hidden" value="" />
+<div class="panel-group" id="main-annotations">
+<div class="panel panel-default">
+<div class="panel-heading " onmousedown="toggle('collapse3')"><strong>-- Step 1 -- (click to expand / collapse)</strong><br />
+<u>Read carefully</u> the following two sentences, and keep in mind all the <u>overlapping content</u> that both sentences share. If the sentences are not clear, click on the &quot;previous sentence&quot; button for more information. Proceed to Step 2 once you&#39;re ready to align question-answers. <!--Identify all phrases that approximately express the same meaning in both sentences.
+                  <strong>Highlight them, making sure to always include one of the bolded verbs in the relevant spans.</strong> Technical note: spans must go around the verb, they <u>cannot</u> include only the verbs. To remove any marked spans, simply click on them.
+                  --></div>
+
+<div class="panel-body">
+<div id="collapse3">
+<h4>Sentence A</h4>
+<button class="context" data-target="#prev1" data-toggle="collapse" type="button">previous sentence</button>
+
+<div class="collapse" id="prev1">${prev_text_1}</div>
+
+<p class="yellow" id="sent1" style="font-size:18px;">${text_1_html}</p>
+
+<div hidden="" id="qas_1">${qas_1}</div>
+
+<h4>Sentence B</h4>
+<button class="context" data-target="#prev2" data-toggle="collapse" type="button">previous sentence</button>
+
+<div class="collapse" id="prev2">${prev_text_2}</div>
+
+<p class="yellow" id="sent2" style="font-size:18px;">${text_2_html}</p>
+
+<div hidden="" id="qas_2">${qas_2}</div>
+<!--<button type="button" class="btn btn-primary btn-lg pull-left" onclick="display_qa()" id="button1">I'm Ready</button>--><!-- Once we click display qas, we should have something highlighted and based on those, well display the QAs--><!--<button type="button" class="btn btn-danger btn-sm pull-right" onclick="nothing()" id="button3" style="margin-top: 10px;"> onclick="nothing()" No information overlap</button>--></div>
+</div>
+</div>
+
+<div id="2nd-main-block">
+<div class="panel panel-default">
+<div class="panel-heading" onmousedown="toggle('collapse4')"><strong>-- Step 2 -- (click to expand / collapse)</strong>
+
+<div id="part2-message"><strong>Create <u>as many</u> alignments as possible, <u style="background-color: yellow;">adding each alignment separately!</u> When debating between multiple statements that appear to convey the same information, choose the one that <u>best corresponds</u> (both question and answer) to what you&#39;re trying to align to.</strong><br />
+<br />
+Make sure to scroll all the way down the table.<br />
+<strong>A good rule:</strong> QAs in an alignment should ask about the same &quot;relation&quot;, i.e ask about the same &quot;thing&quot; (location, time, participant). The core information expressed should also be redundant (when put together).</div>
+</div>
+
+<div class="panel-body">
+<div id="collapse4" style="display:none">
+<div class="table-responsive"><!--<div class="table-responsive" style="height: 300px; overflow: auto">-->
+<table class="table" id="qa_table" style="display: block; overflow-y: auto; max-height: 800px; background-color: #F5F5F5;">
+</table>
+</div>
+<button class="btn btn-success btn-lg block" id="button2" onclick="add_alignment()" style="width: 100%; display:none; margin-right: 10px; margin-bottom: 10px; margin-top: 5px;" type="button">Add alignment</button>
+
+<ul id="alignments">
+</ul>
+</div>
+</div>
+</div>
+<input class="btn btn-danger pull-right" id="skip" onclick="nothing()" style="margin-top: 10px; opacity: 0.6;" type="button" value="No information overlap" /> <input id="submit-button" name="hit-submit" onclick="saveForm()" type="submit" value="Submit" /></div>
+</div>
+<br />
+<br />
+<label for="feedback">Would you like to leave feedback?</label>&nbsp;<br />
+<textarea class="form-control" cols="50" id="feedback" maxlength="250" name="feedback" rows="2"></textarea></form>
+</div>
+</section>
+<script type="text/javascript">
+  //This data is for testing, demonstrates the data well have when running on mturk.
+
+
+  var data = {"abs_sent_id_1":7,  "prev_text_1": "On the positive side the reservation system has helped preserve Indian culture, to recognize Indian sovereignty and to provide federal funds for roads, schools, clinics and a welfare system.",
+      "text_1": "Industry analysts contacted by eWEEK generally say they believe that Hewlett-Packard 's forthcoming $ 13.9 billion acquisition of Electronic Data Systems \? announced officially on May 13 is a good move for both companies , although there will be the usual integration snafus over vendor neutrality issues , business lines , culture shock and layoffs .",  "abs_sent_id_2":6, "prev_text_2":"Tribes can tax non-Indian reservation employees.", "text_2":"They can determine local zoning, fishing and hunting rules; ban alcohol; and open casinos.",
+    'text_1_html': 'The system also <strong>recognizes</strong> Indian fishing and hunting rights and <strong>frees</strong> residents from state taxes, while <strong>providing</strong> the right to <strong>vote</strong> in local, state, and federal elections.',
+ 'text_2_html': 'They can <strong>determine</strong> local zoning, fishing and hunting rules; <strong>ban</strong> alcohol; and <strong>open</strong> casinos.',
+    "qas_1": [{"qa_uuid": "DUC2006~!~D0615~!~69~!~24~!~designed~!~52", "verb": "designed", "question_html": "What does someone strong1recognizestrong2?", "answer": "the universe and all the glory inside it , because this will be a super long sentence, and I want to see if the table can have a row limit, or more like a cell limit"}, {"qa_uuid": "DUC2006~!~D0615~!~69~!~24~!~designed~!~53", "verb": "designed", "question_html": "How was something strong1designedstrong2?", "answer": "on purpose"}, {"qa_uuid": "DUC2006~!~D0615~!~69~!~24~!~designed~!~54", "verb": "designed", "question_html": "Who strong1designedstrong2 something?", "answer": "an intelligent designer"}, {"qa_uuid": "DUC2006~!~D0615~!~69~!~1~!~introduced~!~2313", "verb": "introduced", "question_html": "Who strong1introducedstrong2 something?", "answer": "Creationists"}, {"qa_uuid": "DUC2006~!~D0615~!~69~!~1~!~introduced~!~2314", "verb": "introduced", "question_html": "Where did someone strong1introducestrong2 something?", "answer": "into classrooms"}, {"qa_uuid": "DUC2006~!~D0615~!~69~!~1~!~introduced~!~13549", "verb": "introduced", "question_html": "What did someone strong1introducestrong2?", "answer": "the idea that the universe is so complex that it must have been designed on purpose by an intelligent designer"}, {"qa_uuid": "DUC2006~!~D0615~!~69~!~1~!~introduced~!~13550", "verb": "introduced", "question_html": "What did someone strong1introducestrong2?", "answer": "intelligent design"}],
+			"qas_2":[{"qa_uuid": "DUC2006~!~D0615~!~15~!~15~!~including~!~840", "verb": "including", "question_html": "What strong1includesstrong2 something?", "answer": "other theories of life"}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~15~!~including~!~841", "verb": "including", "question_html": "What does something strong1includestrong2?", "answer": "the idea that the design and complexity of the design of the cosmos require an intelligent designer"}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~8~!~juxtaposed~!~838", "verb": "juxtaposed", "question_html": "What might be strong1juxtaposedstrong2?", "answer": "evolution"}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~8~!~juxtaposed~!~839", "verb": "juxtaposed", "question_html": "How might something be strong1juxtaposedstrong2?", "answer": "with other theories of life"}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~6~!~represented~!~2323", "verb": "represented", "question_html": "What would be strong1representedstrong2?", "answer": "evolution"}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~6~!~represented~!~13553", "verb": "represented", "question_html": "How would something be strong1representedstrong2?", "answer": "juxtaposed with other theories of life , "}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~6~!~represented~!~13554", "verb": "represented", "question_html": "How would something be strong1representedstrong2?", "answer": "fairly"}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~29~!~require~!~1378", "verb": "require", "question_html": "What does something strong1requirestrong2?", "answer": "an intelligent designer"}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~29~!~require~!~13114", "verb": "require", "question_html": "What strong1requiresstrong2 something?", "answer": "the design of the cosmos"}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~29~!~require~!~13115", "verb": "require", "question_html": "What strong1requiresstrong2 something?", "answer": "the design and complexity"}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~1~!~want~!~1074", "verb": "want", "question_html": "who strong1wantsstrong2 something?", "answer": "They"}, {"qa_uuid": "DUC2006~!~D0615~!~15~!~1~!~want~!~1075", "verb": "want", "question_html": "What does someone strong1wantstrong2?", "answer": "evolution toe"}]}
+
+			// the mturk data csv columns:  ["abs_sent_id_1", "text_1","prev_text_1","qas_1","abs_sent_id_2", "text_2", "prev_text_2",
+  // "qas_2"]
+
+  //prepare data variable from HIT csv row data
+   // the mturk data csv columns:  ["qasrl_id_1", "sent1","prev_text_1","qa_1","qasrl_id_2", "sent2", "prev_text_2", "qa_2", "qasrl_id_1_unique_annots", "qasrl_id_2_unique_annots"]
+  //prepare data variable from HIT csv row data
+
+
+  //var data = {"something":"something"};
+  //data["qas_1"] = JSON.parse(document.getElementById("qas_1").innerText);
+  //data["qas_2"] = JSON.parse(document.getElementById("qas_2").innerText);
+
+
+  var arrSelection = {"sent1":[], "sent2":[]}; //this will keep text selections
+  var rangeSelections = {"sent1":[], "sent2":[]}; //this will keep selections in range type
+  var align_selects = []; //this will keep all alignments selected from qa table
+  var align_dict = {};
+  //const submit; //disables or enables the submit button
+  var skip = 0;
+
+  var startTime, endTime;
+
+    function start() {
+      startTime = new Date();
+    };
+
+    function end() {
+      endTime = new Date();
+      var timeDiff = endTime - startTime; //in ms
+      // strip the ms
+      timeDiff /= 1000;
+      timeDiff /= 60;
+
+      // get seconds
+      var mins = Math.round(timeDiff * 100) / 100;
+      console.log(mins + " minutes");
+      return mins
+    }
+
+  window.onload = function() {
+
+   start();
+   //when the document is finished loading, replace everything
+   //TODO - this should go back to text_html_1 in mturk
+   document.getElementById("sent1").innerHTML= data["text_1_html"];
+   document.getElementById("sent2").innerHTML= data["text_2_html"];
+   document.getElementById("prev1").innerHTML = data["prev_text_1"];
+   document.getElementById("prev2").innerHTML = data["prev_text_2"];
+
+   load_qa(); //load table of qas
+
+   const btnSubmit = document.getElementById("submit-button");
+   //console.log("SUBMIT ", submit);
+   btnSubmit.disabled = true;
+   //make submit disabled
+}
+
+  /*
+  Add an event to each highlighted range, on click to remove it.
+  */
+  function updateRanges() {
+    var mainNode = document.getElementById("main-annotations");
+
+    mainNode.querySelectorAll('div.highlighted').forEach((node, i) => {
+                node.addEventListener('click', () => {
+                        if (node.parentElement) {
+                            if (node.childNodes.length) {
+                              const range = document.createRange();
+                              range.selectNodeContents(node);
+                              node.replaceWith(range.extractContents());
+                            } else {
+                              node.remove();
+                            }
+                        }
+                });
+            });
+  }
+
+  function getAllSelections() {
+    arrSelection = {"sent1":[], "sent2":[]};
+    var mainNode = document.getElementById("main-annotations");
+    mainNode.querySelectorAll('div.highlighted').forEach((node, i) => {
+                console.log("all divs ", node);
+
+                var sentid = node.getAttribute("sent");
+                arrSelection[sentid].push(node.innerText.trim());
+    });
+    console.log("Array selections - ",arrSelection);
+  }
+
+  function highlightSelection() {
+    var userSelection = window.getSelection().getRangeAt(0);
+    console.log("In highlight selection ", userSelection);
+
+    const cleanSelection = String(window.getSelection()).trim();
+    if (userSelection.length === 0 || cleanSelection === "") {
+        return;
+    }
+
+    console.log("clean selection ",cleanSelection);
+    var selectionid = window.getSelection().focusNode.parentElement.id;
+
+    if (selectionid != "sent1" && selectionid != "sent2") {
+      console.log('Selection must be within one of the sentences');
+      return;
+    }
+
+    var sel = window.getSelection();
+    if (sel.rangeCount) {
+        var range = sel.getRangeAt(0).cloneRange();
+        console.log("new range ", range);
+        var newNode = document.createElement("div");
+        newNode.setAttribute(
+          "style",
+          "background-color: #FFA07A; display: inline;"
+        );
+        newNode.setAttribute("class", "highlighted");
+        newNode.setAttribute("sent", selectionid);
+
+        range.surroundContents(newNode);
+        rangeSelections[selectionid].push(range);
+        console.log("All ranges ", rangeSelections);
+        //range.surroundContents(element);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        updateRanges();
+    }
+
+    //console.log('Selections', arrSelection);
+  }
+
+  function load_qa() {
+      //updating message in part 2
+    var message = document.getElementById("part2-message");
+
+    var table = document.getElementById('qa_table');
+    table.innerHTML = "";
+
+    var qas_1 = data["qas_1"]; //single qa looks like: {"qa_uuid": item[0], "verb":item[1], "question": item[2],"answer": item[3]}
+    var qas_2 = data["qas_2"];
+
+    let thead = table.createTHead();
+    thead.setAttribute("class", "thead-dark");
+    let thead_row = thead.insertRow();
+    thead_row.innerHTML = "<th scope=\"row\" class=\"w-25\">#</th><th scope=\"col\" align=\"center\" style='width:50%;'>Sentence A Questions and Answers</th><th scope=\"col\" align=\"center\" style='width:50%;'>Sentence B Questions and Answers</th>";
+
+    var tbdy = document.createElement('tbody');
+	//tbdy.style.display = "block";
+    max_rows = Math.max(qas_1.length, qas_2.length);
+    for (let i = 0; i < max_rows; i++) {
+      //var tr = document.createElement('tr');
+      var row = tbdy.insertRow();
+      //row.setAttribute("onclick", "selectRow(this)");
+
+      //td 1
+      var td = document.createElement('td');
+      td.setAttribute("scope", "row");
+      td.innerHTML = i+1;
+      //td 2
+      var td2 = document.createElement('td');
+      td2.setAttribute("onclick", "select_qa(this)");
+      td2.setAttribute("class", "sent1-qa");
+      td2.style.width = "100%;"
+
+      //td2.setAttribute("verb", qas_1[i][1]);
+      if (i < qas_1.length) {
+      	qa_text = qas_1[i]['question_html'].replace("strong1", "<strong>").replace("strong2", "</strong>");
+        td2.innerHTML = qa_text + " - " + qas_1[i]['answer'];
+        td2.setAttribute("qa_uuid", String(qas_1[i]['qa_uuid']));
+        td2.setAttribute("verb", qas_1[i]['verb']);
+      }
+
+      //td 3
+      var td3 = document.createElement('td');
+      td3.setAttribute("onclick", "select_qa(this)");
+      td3.setAttribute("class", "sent2-qa");
+      td3.style.width = "100%;"
+
+      if (i < qas_2.length) {
+      	qa_text = qas_2[i]['question_html'].replace("strong1", "<strong>").replace("strong2", "</strong>");
+        td3.innerHTML = qa_text + " - " + qas_2[i]['answer'];
+        td3.setAttribute("qa_uuid", String(qas_2[i]['qa_uuid']));
+        td3.setAttribute("verb", qas_2[i]['verb']);
+      }
+
+      row.appendChild(td);
+      row.appendChild(td2);
+      row.appendChild(td3);
+    }
+    //var heights = tbdy.offsetHeight;
+    //tbdy.height = heights*max_rows;
+    table.appendChild(tbdy);
+    //divTable.appendChild(table)
+
+    document.getElementById("button2").style.display = 'block';
+
+  }
+
+  //selection: the strings that we select from sentence 1 or 2
+  //choice: qa_1 or qa_2.
+  //here we retrieve all qasrl QAs by verb matching
+  function getQA(selection, choice) {
+    all_qas = new Set();
+    for (select of selection) {
+      for (token of select.split(" ")) {
+        for (qa of data[choice]) { //single qa looks like: {"qa_uuid": item[0], "verb":item[1], "question": item[2],"answer": item[3]}
+          if (qa[1].toLowerCase() === token.toLowerCase()) {
+            all_qas.add(qa);
+          }
+        }
+      }
+    }
+    qa_list = [...all_qas];
+    return qa_list;
+  }
+
+  function select_qa(selection) {
+    if (selection.innerText === "") {
+      return;
+    }
+    console.log("selection ", selection);
+    if (selection.getAttribute("checked") === "true") {
+    	if (selection.getAttribute("aligned") === "true") {
+    		selection.style = "background-color:  #a6a6a6;";
+    		selection.setAttribute("checked", "false");
+      		selection.style.fontWeight = "normal";
+      		return
+		}
+      selection.setAttribute("checked", "false");
+      selection.style = "background-color: #F5F5F5;";
+      selection.style.fontWeight = "normal";
+
+      return;
+    }
+    selection.setAttribute("checked", "true");
+    selection.style.fontWeight = "bold";
+    selection.style = "background-color: #99CCFF;";
+    //selection.style.backgroundColor = "#CCFF99;"
+  }
+
+  function qa_in_alignment(selection) {
+    selection.setAttribute("aligned", "true");
+    selection.style = "background-color:  #a6a6a6;";
+  }
+
+  // each alignment will look like: sent#: [qaid, sel.innerText, sel, sel.previousElementSibling.innerHTML]
+  function add_alignment(){
+    const btnSubmit = document.getElementById("submit-button");
+    btnSubmit.disabled =  align_selects.length === 0;
+
+
+    new_alignment = new Object();
+    new_alignment["sent1"] = [];
+    new_alignment["sent2"] = [];
+    var qa1_selects = document.getElementsByClassName("sent1-qa");
+    var qa2_selects = document.getElementsByClassName("sent2-qa");
+
+    //getting all selections from each sentence column
+    correct_selects = false;
+    for (sel of qa1_selects){
+      if (sel.getAttribute("checked") === "true") {
+        correct_selects = true;
+        var qaid = sel.getAttribute("qa_uuid");
+        let verb = sel.getAttribute("verb");
+        console.log("Printing Rows ", sel.previousElementSibling.innerHTML);
+        new_alignment["sent1"].push([qaid, sel.innerText, sel, sel.previousElementSibling.innerHTML, verb]);
+        sel.setAttribute("checked", "false");
+        sel.style.fontWeight = "normal";
+        sel.style = "background-color: #F5F5F5;";
+      }
+      if (sel.getAttribute("aligned") === "true") {
+			sel.style = "background-color:  #a6a6a6;";
+			sel.setAttribute("checked", "false");
+			sel.style.fontWeight = "normal";
+	  }
+
+    }
+
+    //If nothing was selected from the first:
+    if (correct_selects === false) {
+      alert("You must select at least a question and answer from both sentences!");
+      for (sel of qa1_selects){
+		  if (sel.getAttribute("checked") === "false") {
+		  	continue
+		  }
+        	if (sel.getAttribute("aligned") === "true") {
+				sel.style = "background-color:  #a6a6a6;";
+				sel.setAttribute("checked", "false");
+				sel.style.fontWeight = "normal";
+				continue
+			}
+          sel.setAttribute("checked", "false");
+		  sel.style = "background-color: #F5F5F5;";
+          sel.style.fontWeight = "normal";
+      }
+      for (sel of qa2_selects){
+		  if (sel.getAttribute("checked") === "false") {
+		  	continue
+		  }
+        	if (sel.getAttribute("aligned") === "true") {
+				sel.style = "background-color:  #a6a6a6;";
+				sel.setAttribute("checked", "false");
+				sel.style.fontWeight = "normal";
+				continue
+			}
+          sel.setAttribute("checked", "false");
+		  sel.style = "background-color: #F5F5F5;";
+          sel.style.fontWeight = "normal";
+    }
+      return;
+    }
+
+    correct_selects = false;
+
+    for (sel of qa2_selects){
+      if (sel.getAttribute("checked") === "true") {
+        correct_selects = true
+        let qaid = sel.getAttribute("qa_uuid");
+        let verb = sel.getAttribute("verb");
+        new_alignment["sent2"].push([qaid, sel.innerText, sel, sel.previousElementSibling.previousElementSibling.innerHTML, verb]);
+        sel.setAttribute("checked", "false");
+        sel.style.fontWeight = "normal";
+        sel.style = "background-color: #F5F5F5;";
+      }
+		if (sel.getAttribute("aligned") === "true") {
+			sel.style = "background-color:  #a6a6a6;";
+			sel.setAttribute("checked", "false");
+			sel.style.fontWeight = "normal";
+		}
+    }
+
+    if (correct_selects === false) {
+      alert("You must select at least a question and answer from both sentences!");
+      return;
+    }
+
+    if (containsObject(new_alignment, align_selects)) {
+      alert("This alignment already exists, or you chose the same set of QAs from one of the sentences.");
+      return;
+    }
+
+    //new alignment at key sent# contains: [qaid, sel.innerText, sel (the actual element), sel row number]
+
+    align_selects.push(new_alignment);
+    console.log("current align_selects ",align_selects);
+
+    display_alignments();
+
+  }
+
+
+  function display_alignments() {
+    const btnSubmit = document.getElementById("submit-button");
+    btnSubmit.disabled =  align_selects.length === 0;
+
+    var align_list = document.getElementById("alignments");
+    if (align_list) {
+       align_list.innerHTML = "";
+    } else {
+      var align_list = document.createElement("ul");
+      align_list.setAttribute("class", "task");
+      align_list.setAttribute("id", "alignments");
+    }
+    var label = document.createElement("h3");
+    label.innerHTML = "Chosen Alignments";
+
+    align_list.appendChild(label);
+
+    //submit.disabled = align_selects.length === 0;
+
+    align_selects.forEach( function(item, i) {
+
+       align_dict[i] = item;
+       var list_item = document.createElement("li");
+       list_item.setAttribute("class", "task");
+       list_item.innerHTML = "Alignment "+ (i+1)+ " <span id='close' onclick='this.parentNode.parentNode.removeChild(this.parentNode); return false;'>X</span>";
+       list_item.setAttribute("id", i);
+       var nested_sent1 = document.createElement("ul");
+       nested_sent1.setAttribute("class", "task");
+
+       //sentence 1 alignment selections
+       var nested_item = document.createElement("li");
+       nested_item.setAttribute("class", "task task1");
+       var sent1_text = "";
+
+
+       for (sent1 of item["sent1"]) { //item contains [qaid, sel.innerText, sel, sel row number]
+         sent1_text = sent1_text + sent1[3]+"A: ";
+         qa_in_alignment(sent1[2]); //coloring the QA as "aligned"
+         sent1_text = sent1_text + String(sent1[1]) + "<br/>";
+       }
+       nested_item.innerHTML = sent1_text;
+       nested_sent1.appendChild(nested_item);
+
+       //sentence 2 alignment selections
+       var nested_sent2 = document.createElement("ul");
+       nested_sent2.setAttribute("class", "task");
+       var nested_item = document.createElement("li");
+       nested_item.setAttribute("class", "task");
+       var sent2_text = "";
+
+       for (sent2 of item["sent2"]) {
+          sent2_text = sent2_text + sent2[3]+"B: ";
+          qa_in_alignment(sent2[2]) //coloring the QA as "aligned"
+          sent2_text = sent2_text + String(sent2[1]) + "<br/>";
+       }
+       nested_item.innerHTML = sent2_text;
+       nested_sent2.appendChild(nested_item);
+
+       list_item.appendChild(nested_sent1);
+       list_item.appendChild(nested_sent2);
+
+       align_list.appendChild(list_item);
+    });
+
+    //submit.disabled = align_selects.length === 0;
+
+    setupClose();
+  }
+
+function setupClose(){
+  const btnSubmit = document.getElementById("submit-button");
+  btnSubmit.disabled =  align_selects.length === 0;
+
+  //result.value = JSON.stringify(align_selects);
+  //submit.disabled = align_selects.length === 0;
+  var mainNode = document.getElementById("2nd-main-block");
+  mainNode.querySelectorAll('li span').forEach((node, i) => {
+   node.onclick = function(){
+    var attr = this.parentNode.getAttribute("id");
+    var item = align_dict[attr];
+
+    console.log("ITEEEM ", item);
+    removeFromArray(align_selects, item);
+
+    const btnSubmit = document.getElementById("submit-button");
+    btnSubmit.disabled =  align_selects.length === 0;
+
+    var found_sents = {}
+    for (oitems of align_selects) {
+      for (o1 of oitems["sent1"]) {
+        found_sents[o1] = "true";
+      }
+      for (o2 of oitems["sent2"]) {
+        found_sents[o2] = "true";
+      }
+    }
+    for (sent1 of item["sent1"]) {
+      if (sent1 in found_sents) {
+        continue
+      }
+      sel = sent1[2];
+      sel.setAttribute("aligned", "false");
+      //sel.style.border = "2px solid #000000";
+      sel.style = "background-color: #F5F5F5;";
+    }
+    for (sent2 of item["sent2"]) {
+      if (sent2 in found_sents) {
+        continue
+      }
+      sel = sent2[2];
+      sel.setAttribute("aligned", "false");
+      sel.style = "background-color: #F5F5F5;";
+    }
+    console.log("left over alignments ", align_selects);
+    this.parentNode.parentNode.removeChild(this.parentNode);
+    return false;
+    };
+  });
+}
+
+function nothing() {
+      if (confirm("Are you sure there is no overlap of information?")) {
+        const form = document.querySelector("form");
+        form.submit();
+      } else{
+          return false;
+      }
+}
+
+
+function saveForm() {
+    let endT = end();
+    let result = document.getElementById("my_answers");
+
+    final_results = {};
+    for (align of align_selects) {
+        for (item of align["sent1"]) {
+            item.splice(2,2);
+        }
+        for (item of align["sent2"]) {
+            item.splice(2,2);
+        }
+    }
+
+    result.value = JSON.stringify(align_selects);
+    console.log(result.value);
+
+    let time = document.getElementById("hit_time");
+    time.value = endT;
+    //const form = document.querySelector("form");
+    //form.submit();
+}
+
+  function removeFromArray(arr) {//removeFromArray(align_selects, item);
+      var what, a = arguments, L = a.length, ax;
+      while (L > 1 && arr.length) {
+          what = a[--L];
+          while ((ax= arr.indexOf(what)) !== -1) {
+              arr.splice(ax, 1);
+          }
+      }
+      return arr;
+  }
+
+  function containsObject(obj, list) {
+    console.log("inside contains function ");
+    for (item of list) {
+      console.log("item ",JSON.stringify(item["sent1"]));
+      console.log("obj ", JSON.stringify(obj["sent1"]));
+      if (JSON.stringify(item) === JSON.stringify(obj)) {
+          return true;
+      }
+      if (JSON.stringify(item["sent1"]) === JSON.stringify(obj["sent1"])) {
+          return true
+      }
+      if (JSON.stringify(item["sent2"]) === JSON.stringify(obj["sent2"])){
+          return true
+      }
+    }
+    return false
+  }
+
+
+
+</script><script type="text/javascript">
+
+  function toggle(elementId) {
+        const current = document.getElementById(elementId).style.display;
+        document.getElementById(elementId).style.display = current === 'none' ? 'block' : 'none';
+  }
+   //document.getElementById('collapse1').style.display = 'block';
+     //document.getElementById('collapse2').style.display = 'block';
+
+    //code to fill examples
+    const examples = [
+        {
+            "text_1_html":"Several reservations near population centers have successfully <strong>established</strong> casinos that <strong>provide</strong> income to alleviate extreme poverty.",
+            "qas_1":[
+                    [1, 'provide', '0','What <strong>provides</strong> something?', 'casinos'],
+                    [0, 'provide', '0','Why does something <strong>provide</strong> something', 'to alleviate extreme poverty'],
+                    [1, 'provide', '0','What does something <strong>provide</strong>?', 'income']
+                    ],
+            "qas_2":[
+                    [1, 'brought', '0','What did something <strong>bring</strong>?', 'a new level of prosperity'],
+                    [1, 'brought', '0','What <strong>brought</strong> something?', 'Casinos'],
+                    [0, 'brought', '0','What did something <strong>bring</strong>?', 'opportunity']
+                    ],
+            "note_span":"Notice here the information regarding casinos is the same, one sentence reports casinos bring income, while the other says they bring prosperity, both express the same information.",
+            "note_qa":"Here aligning \'income\' to \'opportunity\' would also make sense given the context, as always, we choose the statements that fully correspond to what we're aligning to. Sometimes we can align one to two statements, but only if the two are necessary to convey the same information that the one conveys.",
+            "alignments":[{"text_1":[[1, 'provide', '0','What provides something?', 'casinos']], "text_2":[[2, 'brought', '0','What brought something?', 'Casinos']]},
+                          {"text_1": [[3, 'provide', '0','what does something provide?', 'income']], "text_2": [[1, 'brought', '0','what did something bring?', 'a new level of prosperity']]}],
+            "text_2_html":"Casinos have <strong>brought</strong> a new level of prosperity and opportunity to many tribes ."
+        },
+        {
+            "text_1_html":"The comedian Ellen DeGeneres <strong>announced</strong> on Friday that she is to <strong>return</strong> as host of the Academy Awards , the second time she has been <strong>tasked</strong> with saving the Oscars a year after a poorly received performer .",
+            "qas_1":[
+                    [1, 'return', '0','What will someone <strong>return</strong> as?', 'host of the Academy Awards'],
+                    [1, 'return', '0','Who will <strong>return</strong> as something?', 'Ellen DeGeneres'],
+                    [0, 'return', '0','Who will <strong>return</strong> as something?', 'she'],
+                    [2, 'announced', '0','What did someone <strong>announce</strong>?', 'she is to return as host of the Academy Awards'],
+                    [0, 'announced', '0','When did someone <strong>announce</strong> something?', 'on Friday'],
+                    [0, 'announced', '0','Who <strong>announced</strong> something?', 'The comedian Ellen DeGeneres']
+                    ],
+            "qas_2":[
+                    [0, 'return', '0','When will someone <strong>return</strong> to something?', 'next year'],
+                    [1, 'return', '0','Who will <strong>return</strong> somewhere', 'Ellen DeGeneres'],
+                    [0, 'return', '0','Who will <strong>return</strong> somewhere', 'a comedy star'],
+                    [1, 'return', '0','What will someone <strong>return</strong> to?', 'host the annual Oscar ceremony'],
+                    [2, 'announced', '0','What did someone <strong>announce</strong>?', 'Ellen DeGeneres would return next year to host the annual Oscar ceremony'],
+                    [0, 'announced', '0','When did someone <strong>announce</strong> something?', 'Friday'],
+                    [0, 'announced', '0','Who <strong>announced</strong> something?', 'the producers of the Academy Awards telecast']
+                    ],
+            "note_span":"Notice the person who is doing the \'announcing\' is different in both sentences, therefore they are not considered to be corresponding, however, the information about someone becoming the host is the same scenario described in both sentences.",
+            "note_qa":"Notice we did not align 4A and 5B (the red alignments), since the \"who\" of announcing are different entities, and thus different events. We do however align the information about Ellen returning to host, since those involve the same participants and thus is the same event.",
+
+            "alignments":[{"text_1":[[1, 'return', '0','What will someone return as?', 'host of the Academy Awards']], "text_2":[[4, 'return', '0','What will someone return to?', 'host the annual Oscar ceremony']]},
+                          {"text_1": [[2, 'return', '0','Who will return as something?', 'Ellen DeGeneres']], "text_2": [[2, 'return', '0','Who will return somewhere', 'Ellen DeGeneres']]}],
+            "text_2_html":"<strong>Reaching</strong> back to television for a comedy star , the producers of the Academy Awards telecast <strong>announced</strong> Friday that Ellen DeGeneres would <strong>return</strong> next year to host the annual Oscar ceremony "
+        },
+        {
+            "text_1_html":"Quebeckers <strong>voted</strong> on two independence referendums, unsuccessfully in 1980 and nearly victoriously in 1995.",
+            "qas_1":[
+                    [2, 'voted', 1, 'What did someone <strong>vote</strong> on?', 'two independence referendums'],
+                    [0, 'voted', 1, 'Who <strong>voted</strong> on something?', 'Quebeckers'],
+                    [0, 'voted', 1, 'How did someone <strong>vote</strong> on something?', 'nearly victoriously'],
+                    [0, 'voted', 1, 'How did someone <strong>vote</strong> on something?', 'unsuccessfully'],
+                    [0, 'voted', 1, 'When did someone <strong>vote</strong> on something?', '1995'],
+                    [1, 'voted', 1, 'When did someone <strong>vote</strong> on something?', '1980']
+                    ],
+            "qas_2":[
+                    [0, 'began', 8, 'What <strong>began</strong> somewhere?', 'The movement for separation of Quebec from Canada'],
+                    [0, 'began', 8, 'When did something <strong>begin</strong> somewhere?', "\"the 1960 \'s\""],
+                    [0, 'began', 8, 'Where was something <strong>begun</strong>?', 'the province'],
+                    [0, 'began', 8, 'Why was something <strong>begun</strong> somewhere?', 'for independence'],
+                    [1, 'voted', 27, 'When did someone <strong>vote</strong> for something?', 'May 1980'],
+                    [0, 'voted', 27, 'Who <strong>voted</strong> for something?', '40 %'],
+                    [2, 'voted', 27, 'What did someone <strong>vote</strong> for?', 'first referendum'],
+                    [2, 'voted', 27, 'What did someone <strong>vote</strong> for?', 'independence'],
+                    [0, 'voted', 27, 'Where did someone <strong>vote</strong> for something?', 'the province'],
+                    [0, 'voted', 27, 'Where did someone <strong>vote</strong> for something?', 'Quebec']
+                    ],
+            "note_span":"Although it seems that the overall topic in both sentences are the same, notice that sentence A mentions as \"voted\" two subevents during different years, while sentence B also mentions two events, not necessarily the same.",
+            "note_qa":"Red alignments here <u>should not</u> be made, notice that the red statement on the left is talking about a \"voting\" that occurs in two different times, while both statements about voting on the right correspond to a subevent, specifically the one that occurred in 1980. We only align statements that correspond and express the same information and scenarios, as shown above.",//Notice the second and third alignment have duplicate questions with different answers. We create two separate alignments, where each conveys separate information and answers to the same question.",
+
+            "alignments":[{"text_1":[[6, 'voted', 1, 'When did someone vote on something?', '1980']], "text_2": [[5, 'voted', 27, 'When did someone vote for something?', 'May 1980']]},
+                          ],
+            "text_2_html":"The movement for separation of Quebec from Canada <strong>began</strong> in the 1960\\'s leading to the first referendum in the province in May 1980 when 40% <strong>voted</strong> for independence"
+        },
+        {
+            "text_1_html":"Jonathan Wright , a director at telecoms company Interoute , <strong>said</strong> that the outage could have a devastating affect on business and communication around the world .",
+            "qas_1":[
+                    [0, 'said', 10, 'What did someone <strong>say</strong>?', 'that the outage could have a devastating affect on business and communication around the world'],
+                    [0, 'said', 10, 'Who <strong>said</strong> something?', 'Jonathan Wright , a director at telecoms company Interoute']
+                   ],
+            "qas_2":[
+                    [0, 'damaged', 20, 'What was <strong>damaged?</strong>', 'cables'],
+                    [0, 'damaged', 20, 'Where was something <strong>damaged</strong>?', 'Middle East'],
+                    [0, 'connecting', 15, 'What <strong>connected</strong> something>?', 'cables'],
+                    [0, 'connecting', 15, 'Why did something <strong>connect</strong> something?', 'communications'],
+                    [0, 'connecting', 15, "Why can't something <strong>connect</strong> something?", 'were damaged'],
+                    [0, 'disrupted', 12, 'What was <strong>disrupted</strong>?', 'Up to 70 % of communications to the Middle East'],
+                    [0, 'disrupted', 12, 'When was something <strong>disrupted</strong>?', 'after cables connecting region to Europe were damaged'],
+                   ],
+            "note_span":"Although at first glance we see from context that the topic is shared in both sentences, they are not precisely expressing the same information. One sentence talks about what is the affect of the problem, while the other talks about what the problem is.",
+            "note_qa":"After looking at the question-answers from both sentences, it seems that they do not have any alignments to make, since they do not have any statements that express the same scenarios.<strong><u> Here we choose \"No Overlap of Information\".</u>",
+
+            "alignments":[],
+            "text_2_html":"Up to 70 % of communications to the Middle East have been <strong>disrupted</strong> after cables <strong>connecting</strong> region to Europe were <strong>damaged</strong>."
+        }
+       ];
+    const examplesHeader = document.getElementById("examples-header");
+    const examplesContent = document.getElementById("examples-content");
+
+    examples.forEach((example, i) => {
+        let exampleContent = document.getElementById("example").innerHTML;
+
+        exampleContent = exampleContent.replace("$text1$", example.text_1_html);
+        exampleContent = exampleContent.replace("$text2$", example.text_2_html);
+        exampleContent = exampleContent.replace("$note-span$", example.note_span);
+        exampleContent = exampleContent.replace("$note-qa$", example.note_qa);
+
+
+        //var table = document.createElement("table");
+        //table.setAttribute("id", "example_qa_table");
+        //table.setAttribute("class", "table");
+
+        //table.innerHTML = "";
+
+        var qas_1 = example.qas_1; //single qa looks like: [17, 'providing', 'what provides something?', 'The system']
+        var qas_2 = example.qas_2;
+
+        //let thead = table.createTHead();
+        let table = document.createElement("table");
+        let thead = document.createElement("thead");
+        table.appendChild(thead);
+        let thead_row = thead.insertRow();
+        thead_row.innerHTML = "<th id=\"example\" scope=\"row\" class=\"w-25\">#</th><th id=\"example\" scope=\"col\" align=\"center\">Sentence A Questions and Answers</th><th id=\"example\" scope=\"col\" align=\"center\">Sentence B Questions and Answers</th>";
+
+        //exampleContent = exampleContent.replace("<thead></thead>", table.innerHTML);
+        thead = table.innerHTML;
+
+        var tbdy = document.createElement('tbody');
+
+        table = document.createElement("table");
+        table.setAttribute("id", "example_qa_table");
+        table.setAttribute("class", "table");
+
+        max_rows = Math.max(qas_1.length, qas_2.length);
+
+        for (let j = 0; j < max_rows; j++) {
+              //var tr = document.createElement('tr');
+              var row = tbdy.insertRow();
+              //row.setAttribute("onclick", "selectRow(this)");
+
+              //td 1
+              var td = document.createElement('td');
+              td.setAttribute("scope", "row");
+              //td.setAttribute("id");
+
+              td.innerHTML = j+1;
+              //td 2
+              var td2 = document.createElement('td');
+              td2.setAttribute("id", "example");
+              //td2.setAttribute("onclick", "select_qa(this)");
+              //td2.setAttribute("class", "sent1-qa");
+
+              if (j < example.qas_1.length) {
+                td2.innerHTML = example.qas_1[j][3] + " - " + example.qas_1[j][4];
+                td2.setAttribute("qasrl_id", example.qas_1[j][0]);
+
+                if (example.qas_1[j][0] === 1) {
+                   td2.setAttribute("aligned", "true");
+                   td2.style = "background-color:  #a6a6a6;";
+                }
+                if (example.qas_1[j][0] === 2) {
+                   td2.setAttribute("aligned", "true");
+                   td2.style = "background-color:  rgba(204, 0, 0, 0.7)";
+                }
+              }
+
+              //td 3
+              var td3 = document.createElement('td');
+              td3.setAttribute("id", "example");
+              //td3.setAttribute("class", "sent2-qa");
+              if (j < example.qas_2.length) {
+                td3.innerHTML = example.qas_2[j][3] + " - " + example.qas_2[j][4];
+                td3.setAttribute("qasrl_id", example.qas_2[j][0]);
+
+                if (example.qas_2[j][0] === 1) {
+                   td3.setAttribute("aligned", "true");
+                   td3.style = "background-color:  #a6a6a6;";
+                }
+
+                if (example.qas_2[j][0] === 2) {
+                   td3.setAttribute("aligned", "true");
+                   td3.style = "background-color:  rgba(204, 0, 0, 0.7)";
+                }
+              }
+
+              row.appendChild(td);
+              row.appendChild(td2);
+              row.appendChild(td3);
+
+              table.appendChild(tbdy);
+
+              //is this the end for the table?
+        }
+
+        //console.log("table inner ", table.innerHTML);
+        const tbody = table.innerHTML;
+        const tableHTML = '<table class="table" id="example_qa_table" style="background-color: #F5F5F5;">' + thead + tbody +'</table>';
+        exampleContent = exampleContent.replace("$table$", tableHTML);
+
+        //exampleContent = exampleContent.replace("<thead></thead>", table.innerHTML);
+        var align_list = document.createElement("ul");
+        align_list.setAttribute("id", "example_alignments");
+        align_list.innerHTML = "";
+        align_list.setAttribute("class", "task");
+        //align_list.setAttribute("id", "alignments");
+
+
+        var label = document.createElement("h4");
+        label.style.color = "darkblue";
+        label.innerHTML = "Chosen Alignments";
+
+        if (example.alignments.length === 0) {
+            label.innerHTML = "Chosen Alignments (None)";
+        }
+
+        align_list.appendChild(label);
+
+        example.alignments.forEach( function(item, k) {
+            var list_item = document.createElement("li");
+            list_item.setAttribute("class", "task");
+            list_item.style.fontSize = "14px";
+            list_item.innerHTML = "Alignment "+ (k+1) + "<span id='close' >X</span>";
+            list_item.setAttribute("id", k);
+            var nested_sent1 = document.createElement("ul");
+            nested_sent1.setAttribute("class", "task");
+
+            //sentence 1 alignment selections
+            var nested_item = document.createElement("li");
+            nested_item.setAttribute("class", "task task1");
+            nested_item.style.fontSize = "14px";
+            var sent1_text = "";
+
+            for (sent1 of item["text_1"]) { //item contains [qaid, sel.innerText, sel, sel row number]
+                 sent1_text = sent1_text + sent1[0]+"A: ";
+                 sent1_text = sent1_text + String(sent1[3] + " - " + sent1[4]) + "<br/>";
+            }
+            nested_item.innerHTML = sent1_text;
+            nested_sent1.appendChild(nested_item);
+
+            //sentence 2 alignment selections
+            var nested_sent2 = document.createElement("ul");
+            nested_sent2.setAttribute("class", "task");
+            var nested_item = document.createElement("li");
+            nested_item.style.fontSize = "14px";
+            nested_item.setAttribute("class", "task");
+            var sent2_text = "";
+
+           for (sent2 of item["text_2"]) {
+               sent2_text = sent2_text + sent2[0]+"B: ";
+               sent2_text = sent2_text + String(sent2[3] + " - " + sent2[4]) + "<br/>";
+           }
+           nested_item.innerHTML = sent2_text;
+           nested_sent2.appendChild(nested_item);
+           list_item.appendChild(nested_sent1);
+           list_item.appendChild(nested_sent2);
+
+           align_list.appendChild(list_item);
+        });
+
+        //submit.disabled = align_selects.length === 0;
+        exampleContent = exampleContent.replace("$align$", align_list.innerHTML);
+
+        const div = document.createElement('div');
+        div.className = "tab-pane fade" + (i === 0 ? ' in active' : '');
+        div.id = "example" + (i+1);
+        div.innerHTML = exampleContent;
+
+        examplesContent.appendChild(div);
+
+        examplesHeader.innerHTML += "<li><a data-toggle=\"tab\" href=\"#example" + (i+1) + "\">Example " + (i+1) + "</a></li>";
+
+    });
+     examplesHeader.querySelector("li").className = "active";
+
+</script>
