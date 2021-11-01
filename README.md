@@ -1,12 +1,12 @@
 # QA-ALIGN: Representing Cross-Text Content Overlap by Aligning Question-Answer Propositions
 To Appear in EMNLP 2021
 
-* Paper can be found [here] (https://arxiv.org/abs/2109.12655)
-* Official QA-Alignments can be found [here] (data/official_qa_alignments)
-* Crowdsourcing related materials can be found [here] (crowdsourcing)
-* Files relatedd to training and experimenting with the QA-Align model can be found [here] (models/)
-* Fusion experiemnt related data can be found [here] (data/fusion_data_and_experiment)
-* Processed qa-alignments for training can be found [here] (data/) in a zip called: processed_alignments_for_training
+* Paper can be found [here](https://arxiv.org/abs/2109.12655)
+* Official QA-Alignments can be found [here](data/official_qa_alignments)
+* Crowdsourcing related materials can be found [here](crowdsourcing)
+* Files relatedd to training and experimenting with the QA-Align model can be found [here](models/)
+* Fusion experiemnt related data can be found [here](data/fusion_data_and_experiment)
+* Processed qa-alignments for training can be found [here](data/) in a zip called: processed_alignments_for_training
 
 
 ## Paper Abstract
