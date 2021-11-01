@@ -1,6 +1,6 @@
 **Gold data**
 
-files contain the following important columns:
+f=Files contain the following important columns:
 abs_sent_id_1 & abs_sent_id_2 (unique sentence id, unique across all data sources)
 text_1,text_2,prev_text_1, and prev_text_2 - are the two candidate sentences for alignments. The previous sentences are for context (shown to workers and for the model).
 qas_1,qas_2 - are the sets of QASRL QAs for each sentence. For test and dev they were created by workers, while in train, the QASRL parser generated them.
